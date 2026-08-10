@@ -365,7 +365,7 @@ prodoc.add_cover_page(doc,"LEARNER GUIDE",C.TITLE,C.VERSION.lstrip("v"),
                       org_logo=os.path.join(ASSETS,"tertiary-infotech-logo.png"),
                       course_logo=None, course_code=C.COURSE_CODE)
 prodoc.add_version_control(doc,[
- ("14.0","1 January 2024","Previous release under course code TGS-2020503676.",C.TRAINER),
+ ("14.0","1 January 2024","Previous release of the Learner Guide, issued under the superseded course reference.",C.TRAINER),
  (C.VERSION.lstrip("v"),C.VERSION_DATE,
   f"Re-issued under WSQ course code {C.COURSE_CODE}. Content carried over from the v14 master trainer deck and restructured to the current Tertiary Infotech WSQ house standard. Added {len(ACT)} step-by-step hands-on activities built on the browser-based ed-tools, expanded topic notes, an assessment-preparation section, a glossary and references.",C.TRAINER),
 ])

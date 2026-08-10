@@ -121,9 +121,9 @@ prodoc.add_cover_page(doc,"LESSON PLAN",C.TITLE,C.VERSION.lstrip("v"),
                       org_logo=os.path.join(ASSETS,"tertiary-infotech-logo.png"),
                       course_logo=None, course_code=C.COURSE_CODE)
 prodoc.add_version_control(doc,[
- ("14.0","1 January 2024","Previous release under course code TGS-2020503676 — 1-day lesson plan for the Design Thinking Course for Businesses.",C.TRAINER),
+ ("14.0","1 January 2024","Previous release of the 1-day lesson plan for the Design Thinking Course for Businesses, issued under the superseded course reference.",C.TRAINER),
  (C.VERSION.lstrip("v"),C.VERSION_DATE,
-  "Re-issued under WSQ course code TGS-2026064719. Content carried over from the v14 master trainer deck and restructured to the current Tertiary Infotech WSQ house standard. Added seven structured hands-on activities built on the browser-based ed-tools (Design Thinking Toolkit, RACI, Scrum, Digital Transformation and BCM), and aligned the schedule, slide references and assessment instruments (WA SAQ + PP).",C.TRAINER),
+  f"Re-issued under WSQ course code {C.COURSE_CODE}. Content carried over from the v14 master trainer deck and restructured to the current Tertiary Infotech WSQ house standard. Added seven structured hands-on activities built on the browser-based ed-tools (Design Thinking Toolkit, RACI, Scrum, Digital Transformation and BCM), and aligned the schedule, slide references and assessment instruments (WA SAQ + PP).",C.TRAINER),
 ])
 prodoc.add_toc(doc)
 
