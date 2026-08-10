@@ -455,13 +455,13 @@ tile_grid("Skills Framework Alignment",[
  ("Knowledge assessed","K1–K7: concepts, importance, traits, use cases, organisational approaches, methods and metrics.")],
  kicker="SKILLS FRAMEWORK FOR DESIGN",cols=2,size=14,accent=VIOLET)
 two_col("Lesson Plan — 1 Day, 8 Course Hours",[
- ("Morning — 9:30am to 12:45pm",0),
+ (f"Morning — {C.DAY_START} to {C.LUNCH_START}",0),
  ("Digital Attendance (AM), introductions, learning outcomes",1),
  ("Topic 1: Key Concepts & Principles (Activities 1–2)",1),
  ("Topic 2: Applications of Design Thinking (Activity 3)",1),
  ("Tea break taken within training time",1),
- ("Lunch break 12:45pm – 1:45pm",1)],
- [("Afternoon — 1:45pm to 6:30pm",0),
+ (f"Lunch break {C.LUNCH_START} – {C.LUNCH_END}",1)],
+ [(f"Afternoon — {C.LUNCH_END} to {C.DAY_END}",0),
  ("Digital Attendance (PM)",1),
  ("Topic 3: Action Phases — the Wallet Project (Activity 4)",1),
  ("Topic 4: Methodologies & Visual Tools (Activities 5–7)",1),

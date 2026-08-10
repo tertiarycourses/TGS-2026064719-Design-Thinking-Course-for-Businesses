@@ -112,6 +112,24 @@ SCHEDULE_RAW = {
 }
 SCHEDULE = {d:(theme,_expand(rows)) for d,(theme,rows) in SCHEDULE_RAW.items()}
 
+def _assert_timetable_matches_deck():
+    """The deck's Lesson Plan slide prints C.DAY_START / LUNCH_START / LUNCH_END /
+    DAY_END. Those are the same window this schedule computes, so verify they agree —
+    otherwise learners are shown one timetable and taught to another."""
+    def ampm(m):
+        h=(m//60)%24; suffix="am" if h<12 else "pm"; hh=h if h<=12 else h-12
+        return f"{hh}:{m%60:02d}{suffix}"
+    t=DAY_START; found=None
+    for mins,kind,_ in SCHEDULE_RAW[1][1]:
+        if kind=="lunch": found=(ampm(t),ampm(t+mins))
+        t+=mins
+    end=ampm(t)
+    want=(C.LUNCH_START,C.LUNCH_END)
+    assert found==want, f"deck lunch {want} != schedule lunch {found} — fix course_data.LUNCH_*"
+    assert end==C.DAY_END, f"deck day end {C.DAY_END} != schedule end {end} — fix course_data.DAY_END"
+    assert ampm(DAY_START)==C.DAY_START, f"deck start {C.DAY_START} != schedule start {ampm(DAY_START)}"
+_assert_timetable_matches_deck()
+
 # ------------------------------------------------ build document
 doc=Document()
 normal=doc.styles["Normal"]; normal.font.name="Arial"; normal.font.size=Pt(11)
@@ -123,7 +141,7 @@ prodoc.add_cover_page(doc,"LESSON PLAN",C.TITLE,C.VERSION.lstrip("v"),
 prodoc.add_version_control(doc,[
  ("14.0","1 January 2024","Previous release of the 1-day lesson plan for the Design Thinking Course for Businesses, issued under the superseded course reference.",C.TRAINER),
  (C.VERSION.lstrip("v"),C.VERSION_DATE,
-  f"Re-issued under WSQ course code {C.COURSE_CODE}. Content carried over from the v14 master trainer deck and restructured to the current Tertiary Infotech WSQ house standard. Added seven structured hands-on activities built on the browser-based ed-tools (Design Thinking Toolkit, RACI, Scrum, Digital Transformation and BCM), and aligned the schedule, slide references and assessment instruments (WA SAQ + PP).",C.TRAINER),
+  f"Re-issued under WSQ course code {C.COURSE_CODE}. Content carried over from the v14 master trainer deck and restructured to the current Tertiary Infotech WSQ house standard. Added seven structured hands-on activities built on the browser-based ed-tools (Design Thinking Toolkit, RACI, Scrum, Digital Transformation and BCM), and aligned the schedule, slide references and assessment instruments (PP 70 minutes + OQ 20 minutes).",C.TRAINER),
 ])
 prodoc.add_toc(doc)
 

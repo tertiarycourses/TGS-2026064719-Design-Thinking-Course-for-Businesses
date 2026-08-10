@@ -25,7 +25,7 @@ Course page: <https://www.tertiarycourses.com.sg/casl-design-thinking-course-for
 | Learner Guide (Markdown mirror) | [`LG-Design Thinking Course for Businesses.md`](LG-Design%20Thinking%20Course%20for%20Businesses.md) |
 | Hands-on activities | [`labs/`](labs/) |
 
-> The assessment instruments (WA + PP question papers and answer keys) are
+> The assessment instruments (PP + OQ question papers and answer keys) are
 > **confidential** and are distributed via Google Drive / the LMS only. They are
 > never committed to this repository.
 

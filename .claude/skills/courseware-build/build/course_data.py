@@ -125,6 +125,14 @@ DAY_THEMES = {
     1: "Design Thinking Concepts, Applications, Action Phases, Visual Tools & Assessment",
 }
 
+# ------------------------------------------------------------------ timetable (single source)
+# The Lesson Plan computes its schedule from durations; these strings are the SAME
+# window expressed for the deck's Lesson Plan slide, so the two cannot disagree.
+DAY_START     = "9:30am"
+LUNCH_START   = "12:25pm"
+LUNCH_END     = "1:25pm"
+DAY_END       = "6:30pm"
+
 # ------------------------------------------------------------------ assessment
 # Instruments and durations mirror the approved assessment plan for this course:
 #   Practical Performance (PP) — 70 mins
