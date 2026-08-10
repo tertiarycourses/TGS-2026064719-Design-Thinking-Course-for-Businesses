@@ -442,8 +442,16 @@ def build_payload(course, urls):
     def set_method(key, url):
         methods[key] = {"link": url or "", "enabled": bool(url)}
 
+    # The knowledge instrument shares ONE flat column (writtenAssessmentLink) but has TWO
+    # distinct assessmentMethods slots — and the course page labels the section from the
+    # slot, not the column. A course assessed by ORAL QUESTIONING must therefore land in
+    # `oralQuestioning`, or the page announces a "Written Exam" the course does not have.
+    # Decide from the paper's own filename, and clear the slot it is NOT.
     if "writtenAssessmentLink" in urls:
-        set_method("writtenAssessment", urls["writtenAssessmentLink"][1])
+        wa_name, wa_url = urls["writtenAssessmentLink"]
+        is_oral = re.search(r"^\s*oq\b|oral question|\(oq\)", wa_name, re.I) is not None
+        set_method("oralQuestioning",   wa_url if is_oral else None)
+        set_method("writtenAssessment", None if is_oral else wa_url)
 
     # ONE practical instrument: set the one we have, and CLEAR the other so a stale link
     # (e.g. a PP doc left behind on a Case Study course) cannot survive on the LMS.
@@ -578,6 +586,26 @@ def main():
         old = course.get(field) or "(empty)"
         same = " (unchanged)" if old == url else ""
         print(f"  {FIELD_LABELS[field]}{same}\n    old: {old}\n    new: {url}")
+
+    # The course page labels each assessment section from assessmentMethods{}, NOT from the
+    # flat columns above — so preview that routing too. Without this an OQ paper filed under
+    # `writtenAssessment` looks correct here while the page announces a "Written Exam".
+    before = course.get("assessmentMethods") or {}
+    if isinstance(before, str):
+        try:
+            before = json.loads(before)
+        except Exception:
+            before = {}
+    after = build_payload(course, urls).get("assessmentMethods") or {}
+    rows = [(k, (before.get(k) or {}).get("enabled"), v.get("enabled"))
+            for k, v in after.items()
+            if (before.get(k) or {}).get("enabled") != v.get("enabled")
+            or (before.get(k) or {}).get("link") != v.get("link")]
+    if rows:
+        print("\nAssessment sections on the course page (assessmentMethods):")
+        for k, was, now in rows:
+            note = "" if now else "   (section hidden)"
+            print(f"  {k}: enabled {was} → {now}{note}")
 
     if a.dry_run:
         print("\n[dry-run] nothing written. Re-run without --dry-run to push to LMS-TMS.")
