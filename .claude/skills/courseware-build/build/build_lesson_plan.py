@@ -102,12 +102,12 @@ SCHEDULE_RAW = {
     (40,"lab","Hands-on: "+act_titles([4])),
     (15,"break","Tea break (within training time)"),
     (35,"topic","Topic 4 — Methodologies and Visual Tools: empathy maps, personas and journey maps; POV and How Might We; brainstorming and idea-selection methods; low- and high-fidelity prototyping; user testing; and metrics for measuring design outcomes"),
-    (25,"lab","Hands-on: "+act_titles([5])),
-    (35,"lab","Hands-on: "+act_titles([6,7])),
+    (30,"lab","Hands-on: "+act_titles([5])),
+    (40,"lab","Hands-on: "+act_titles([6,7])),
     (10,"recap","Course recap, summary and Q&A, course feedback and the mandatory TRAQOM survey"),
     (5,"assess","Briefing for Assessment and Assessment digital attendance"),
-    (30,"assess","Written Assessment (WA) — Short-Answer Questions (SAQ), 30 minutes, open book"),
     (70,"assess","Practical Performance (PP) — design-thinking tasks using the course ed-tools, 70 minutes, open book"),
+    (20,"assess","Oral Questioning (OQ) — the assessor questions each learner verbally on the underpinning knowledge, 20 minutes, open book"),
  ]),
 }
 SCHEDULE = {d:(theme,_expand(rows)) for d,(theme,rows) in SCHEDULE_RAW.items()}
@@ -134,10 +134,10 @@ H("Course Information",1)
 info=[("Course Title",C.TITLE),("WSQ Course Reference",C.COURSE_CODE),
       ("TSC Title / Code",f"{C.TSC_TITLE}  ·  {C.TSC_CODE}"),
       ("Training Provider",C.ORG+"  ("+C.UEN.replace('UEN: ','UEN ')+")"),
-      ("Duration","1 day · 8 course hours (375 minutes instruction + 105 minutes assessment; the 1-hour lunch break is excluded)"),
+      ("Duration","1 day · 8 course hours (385 minutes instruction + 95 minutes assessment; the 1-hour lunch break is excluded)"),
       ("Daily Timing","9:30 am – 6:30 pm, including a 1-hour lunch break; tea breaks are taken within training time"),
       ("Mode","Instructor-led, facilitated hands-on design-thinking activities using browser-based ed-tools"),
-      ("Assessment","Written Assessment (WA — SAQ, 30 minutes) and Practical Performance (PP, 70 minutes), both open book"),
+      ("Assessment","Practical Performance (PP, 70 minutes) and Oral Questioning (OQ, 20 minutes), both open book"),
       ("Trainer",C.TRAINER)]
 t=doc.add_table(rows=0,cols=2); t.style="Table Grid"
 for k,v in info:

@@ -488,12 +488,12 @@ def briefing_slide():
 def assessment_slide():
     """Two instrument cards + an open-book / competency callout."""
     s=head(slide(),"Assessment","FINAL ASSESSMENT",kcolor=BLUE)
-    cards=[(BLUE,"Written Assessment (WA)","Short-Answer Questions (SAQ)",
-            f"{C.WA_MINUTES} minutes  ·  Open book",
-            "Tests your KNOWLEDGE of design thinking concepts, phases, tools and metrics."),
-           (TEAL,"Practical Performance (PP)","Design-thinking tasks",
+    cards=[(TEAL,"Practical Performance (PP)","Design-thinking tasks",
             f"{C.PP_MINUTES} minutes  ·  Open book",
-            "Tests your ABILITY to apply the methods using the course ed-tools.")]
+            "Tests your ABILITY to apply the methods using the course ed-tools."),
+           (BLUE,"Oral Questioning (OQ)","Verbal questions from the assessor",
+            f"{C.OQ_MINUTES} minutes  ·  Open book",
+            "Tests your KNOWLEDGE of design thinking concepts, phases, tools and metrics.")]
     X0=Inches(0.85); TOTW=Inches(11.63); gap=Inches(0.35)
     cw=int((TOTW-gap)/2); y=Inches(2.0); ch=Inches(3.15)
     for i,(col,t1,t2,t3,t4) in enumerate(cards):
@@ -516,8 +516,8 @@ assessment_slide()
 flow_h("Assessment Flow",[
  "Scan the QR code on the LMS",
  "Scan the SSG QR code",
- "Sit WA (SAQ) then PP — open book",
- "Submit your answers on the LMS",
+ "Sit the PP, then answer the OQ verbally",
+ "Submit your PP answers on the LMS",
  "Sign the Assessment Summary Record"],kicker="ON ASSESSMENT DAY",
  labels=["TRAQOM","Attendance","Assessment","Submit","Sign off"])
 content("Criteria for Funding",[
@@ -778,8 +778,8 @@ assessment_slide()
 flow_h("Assessment Flow",[
  "Scan the QR code on the LMS",
  "Scan the SSG QR code",
- "Sit WA (SAQ) then PP — open book",
- "Submit your answers on the LMS",
+ "Sit the PP, then answer the OQ verbally",
+ "Submit your PP answers on the LMS",
  "Sign the Assessment Summary Record"],kicker="ON ASSESSMENT DAY",
  labels=["TRAQOM","Attendance","Assessment","Submit","Sign off"])
 attendance_slide()

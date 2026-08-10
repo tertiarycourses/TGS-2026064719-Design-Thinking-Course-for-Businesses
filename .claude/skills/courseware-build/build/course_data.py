@@ -126,16 +126,19 @@ DAY_THEMES = {
 }
 
 # ------------------------------------------------------------------ assessment
-# Durations mirror the assessment papers on file (WA 30 min · PP 70 min, per "PP Assessment v6").
+# Instruments and durations mirror the approved assessment plan for this course:
+#   Practical Performance (PP) — 70 mins
+#   Oral Questioning (OQ)      — 20 mins
+# The written instrument is ORAL QUESTIONING, not a written SAQ paper.
 ASSESSMENT = dict(
-    written="Written Assessment (WA) — Short-Answer Questions (SAQ), 30 minutes, open book.",
+    written="Oral Questioning (OQ) — the assessor asks each learner the questions verbally, 20 minutes, open book.",
     practical="Practical Performance (PP) — design-thinking tasks using the course ed-tools, 70 minutes, open book.",
     note="A minimum of 75% attendance is required to be eligible for assessment and funding.",
 )
-WA_MINUTES = 30
+OQ_MINUTES = 20
 PP_MINUTES = 70
 BRIEFING_MINUTES = 5
-ASSESSMENT_MINUTES = WA_MINUTES + PP_MINUTES + BRIEFING_MINUTES   # 105
+ASSESSMENT_MINUTES = OQ_MINUTES + PP_MINUTES + BRIEFING_MINUTES   # 95
 
 # ------------------------------------------------------------------ ROI / business value data (from master deck)
 ROI_STATS = [

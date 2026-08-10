@@ -2,7 +2,7 @@
 
 **WSQ Course Code:** TGS-2026064719
 **TSC:** Design Thinking Practices · DSN-ACE-3014-1.1
-**Duration:** 1 day · 8 course hours (415 min instruction + 65 min assessment)
+**Duration:** 1 day · 8 course hours (385 min instruction + 95 min assessment)
 **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)
 **Version:** v15.0 · 10 August 2026
 
@@ -79,8 +79,15 @@ All activities run in the browser — no installation required.
 
 | Instrument | Format | Duration |
 |---|---|---|
-| Written Assessment (WA) | Short-Answer Questions (SAQ), open book | 30 min |
-| Practical Performance (PP) | Design-thinking tasks using the ed-tools, open book | 30 min |
+| Practical Performance (PP) | Design-thinking tasks using the ed-tools, open book | 70 min |
+| Oral Questioning (OQ) | Assessor asks each learner verbally, open book | 20 min |
+
+The instruments are a revision of the approved papers on file — same instrument
+types, same question and task counts (4 tasks / 7 questions), same K and A code
+mapping and the same timings — with the content rewritten against this build's
+slides and activities. The OQ is delivered **verbally**: the assessor asks each
+question and records the learner's response; there is no written paper for the
+learner to complete.
 
 A minimum of **75% attendance** is required to be eligible for assessment and
 funding, and learners must be assessed **Competent** in both instruments.

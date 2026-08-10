@@ -263,9 +263,11 @@ for t in C.TOPICS:
         rule()
 
 h1("Preparing for the Assessment")
-h3("Written Assessment (WA) — Short-Answer Questions")
+h3("Oral Questioning (OQ)")
 bullets([
- f"Open book, {C.WA_MINUTES} minutes. You may use these slides, this Learner Guide and approved materials.",
+ f"Open book, {C.OQ_MINUTES} minutes. The assessor asks you the questions verbally and records your answers — there is no written paper for this instrument.",
+ "Answer in your own words and give an example wherever you can; the assessor may ask a follow-up to confirm your understanding.",
+ "You may refer to these slides, this Learner Guide and approved materials while you answer.",
  "Revise the definition of design thinking and why it is human-centred (Topic 1).",
  "Be able to name the traits and mindset of a design thinker, and contrast them with traditional thinking.",
  "Know the three lenses — desirability, viability, feasibility — and what each asks.",

@@ -1,18 +1,28 @@
 # ---------------------------------------------------------------- CONFIDENTIAL
 # The assessment set (question papers AND answer keys) is confidential.
 # It is distributed via Google Drive and the LMS only, and must NEVER be
-# committed to a public repository.
+# committed to a public repository. The trailing-space variant is covered
+# because the house folder name sometimes carries one.
+/assessment/
+/assessment\ /
 assessment/
 *Answer to *
 *Answer Key*
 
-# Internal Drive links resolved by /gdrive-push
+# Internal Drive links + course ids resolved by /gdrive-push — a credential.
 .env
+.env.*
+.claude/lms_tms_api_key
 
 # ---------------------------------------------------------------- reference
-# The superseded v14 master deck and the Skills Framework PDF are source
-# material, not deliverables — they are large and stay out of the repo.
-reference/
+# Source material this courseware was derived from (the superseded v14 master
+# deck, the Skills Framework PDF) — third-party material, not ours to
+# republish. Unanchored so it matches at any depth...
+**/reference/
+# ...but the courseware-build/wsq-slides skills ship a REFERENCE IMPLEMENTATION
+# under .claude/skills/**/reference/ that the build actually runs. Keep it.
+!.claude/skills/**/reference/
+!.claude/skills/**/reference/**
 
 # ---------------------------------------------------------------- archives
 courseware/archive/

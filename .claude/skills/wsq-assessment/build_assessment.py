@@ -49,7 +49,7 @@ import prodoc
 TITLE       = "Design Thinking Course for Businesses"
 COURSE_CODE = "TGS-2026064719"
 TSC         = "Design Thinking Practices (DSN-ACE-3014-1.1)"
-WA_MINUTES  = "30 minutes"
+OQ_MINUTES  = "20 minutes"          # per the approved assessment plan
 PP_MINUTES  = "70 minutes"          # unchanged from the original PP v6
 # ────────────────────────────────────────────────────────────────────────────
 prodoc.TGS = f"TGS Ref No: {COURSE_CODE}"
@@ -455,8 +455,24 @@ def add_hyperlink(p, url, text):
     link.append(run); p._p.append(link)
     return link
 
-def instructions(doc, minutes_text):
+def instructions(doc, minutes_text, oral=False):
+    """Instructions to the candidate. For Oral Questioning the answers are spoken and
+    recorded by the assessor, so the LMS-upload step does not apply."""
     heading(doc, "Instructions to Candidate")
+    if oral:
+        items = [
+            "This is an individual assessment.",
+            "This is an open-book assessment. You may refer to the course slides, the Learner Guide and "
+            "approved materials only.",
+            f"A total of {minutes_text} is given to complete this assessment.",
+            "The assessor will ask you each question verbally and record your response. Answer in your own "
+            "words and give an example wherever you can.",
+            "The assessor may ask a follow-up question to confirm your understanding.",
+        ] + BRIEFING[:3]
+        for i, s in enumerate(items, 1):
+            p = doc.add_paragraph(); p.paragraph_format.space_after = Pt(4)
+            p.add_run(f"{i}.  {s}").font.size = Pt(11)
+        return
     items = [
         "This is an individual exercise.",
         "This is an open-book assessment. You may refer to the course slides, the Learner Guide and "
@@ -490,23 +506,26 @@ def finish(doc, path):
 
 # ---------------------------------------------------------------- builders
 def build_wa(answers):
+    """Oral Questioning (OQ) — the assessor asks these verbally and records the response.
+    The candidate does not write on this paper; the boxes are the ASSESSOR's record."""
     doc = base_doc()
-    kind = "Written Assessment (SAQ) — Answer Key" if answers else "Written Assessment (SAQ)"
+    kind = "Oral Questioning (OQ) — Answer Key" if answers else "Oral Questioning (OQ)"
     prodoc.add_cover_page(doc, kind, TITLE, A_VER if answers else Q_VER,
                           org_logo=ORG_LOGO, course_logo=COURSE_LOGO, course_code=COURSE_CODE)
     para(doc, TITLE, size=15, bold=True, color=DARK, align=WD_ALIGN_PARAGRAPH.CENTER, after=2)
-    para(doc, "Answers to Written Assessment (SAQ)" if answers else "Written Assessment (SAQ)",
+    para(doc, "Answers to Oral Questioning (OQ)" if answers else "Oral Questioning (OQ)",
          size=13, bold=True, color=BRAND, align=WD_ALIGN_PARAGRAPH.CENTER, after=2)
     para(doc, f"Course Code: {COURSE_CODE}  ·  TSC: {TSC}", size=10.5, color=GREY,
          align=WD_ALIGN_PARAGRAPH.CENTER, after=12)
     if not answers:
-        candidate_block(doc); instructions(doc, WA_MINUTES)
-        grading(doc, "Candidate has answered all written questions and demonstrated the underpinning "
+        candidate_block(doc); instructions(doc, OQ_MINUTES, oral=True)
+        grading(doc, "Candidate has answered all oral questions and demonstrated the underpinning "
                      "knowledge (K1–K7) required for the course learning outcomes.")
         page_break(doc)
-    para(doc, "Short-Answer Questions (Knowledge)", size=13, bold=True, color=BRAND, after=4)
-    para(doc, "Answer all questions in your own words. Each question tests underpinning knowledge covered in "
-              "the course slides. All questions are open-ended — there are no multiple-choice options.",
+    para(doc, "Oral Questions (Knowledge)", size=13, bold=True, color=BRAND, after=4)
+    para(doc, "The assessor asks each question verbally and records the candidate's response in the box "
+              "below it. Questions are open-ended — there are no multiple-choice options. The assessor may "
+              "ask a follow-up question to confirm the candidate's understanding.",
          size=10.5, italic=True, color=GREY, after=8)
     per_page = 1 if answers else 2
     for i, (crit, ctx, q, pts) in enumerate(WRITTEN, 1):
@@ -517,8 +536,8 @@ def build_wa(answers):
         if i % per_page == 0 and i < len(WRITTEN):
             page_break(doc)
     suffix = A_VER if answers else Q_VER
-    name = (f"Answer to WA (SAQ) - {TITLE} - {suffix}.docx" if answers
-            else f"WA (SAQ) - {TITLE} - {suffix}.docx")
+    name = (f"Answers to Oral Questioning (OQ) - {TITLE} - {suffix}.docx" if answers
+            else f"Oral Questioning (OQ) - {TITLE} - {suffix}.docx")
     finish(doc, os.path.join(OUT, name))
 
 def build_pp(answers):
@@ -560,4 +579,4 @@ if __name__ == "__main__":
     check_coverage()
     build_wa(answers=False); build_wa(answers=True)
     build_pp(answers=False); build_pp(answers=True)
-    print(f"Done. WA: {len(WRITTEN)} questions (K1–K7) · PP: {len(PRACTICAL)} tasks (A1–A6).")
+    print(f"Done. OQ: {len(WRITTEN)} questions (K1–K7) · PP: {len(PRACTICAL)} tasks (A1–A6).")
