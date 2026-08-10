@@ -1,0 +1,38 @@
+# ---------------------------------------------------------------- CONFIDENTIAL
+# The assessment set (question papers AND answer keys) is confidential.
+# It is distributed via Google Drive and the LMS only, and must NEVER be
+# committed to a public repository.
+assessment/
+*Answer to *
+*Answer Key*
+
+# Internal Drive links resolved by /gdrive-push
+.env
+
+# ---------------------------------------------------------------- reference
+# The superseded v14 master deck and the Skills Framework PDF are source
+# material, not deliverables — they are large and stay out of the repo.
+reference/
+
+# ---------------------------------------------------------------- archives
+courseware/archive/
+*.zip
+
+# ---------------------------------------------------------------- OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# ---------------------------------------------------------------- Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ---------------------------------------------------------------- Office locks
+~$*.docx
+~$*.pptx
+~$*.xlsx
