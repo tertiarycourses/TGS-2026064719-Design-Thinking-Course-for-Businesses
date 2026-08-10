@@ -221,9 +221,16 @@ def collect_links(root):
     # ---- the assessment: QUESTION PAPERS ONLY. Answer keys are trainer-only and never
     # reach the LMS, so they are filtered out before anything is picked.
     docx = lambda n: n.lower().endswith(".docx") and not is_answer_key(n)
+    # The knowledge instrument occupies the writtenAssessmentLink field whether it is a
+    # written SAQ paper or an ORAL QUESTIONING paper — the LMS has no separate OQ column.
+    # House naming varies: "WA (SAQ) - <course> - vNN.docx" and
+    # "Oral Questioning (OQ) - <course> - vNN.docx" are both this instrument. Without the
+    # OQ spellings an OQ-assessed course reports the field as missing and the LMS keeps
+    # serving whatever stale paper it already had.
     take("writtenAssessmentLink", "assessment",
-         lambda n: docx(n) and re.match(r"^\s*wa\b|written assessment", n, re.I),
-         "WA (SAQ) question paper .docx")
+         lambda n: docx(n) and re.search(
+             r"^\s*wa\b|written assessment|^\s*oq\b|oral question|\(oq\)", n, re.I),
+         "WA (SAQ) or Oral Questioning (OQ) question paper .docx")
     # The practical instrument is EITHER a Case Study OR a Practical Performance — never both.
     take("caseStudyLink", "assessment",
          # `^cs\b` mirrors the WA rule: papers are named "CS Assessment- <course> - vNN.docx"
